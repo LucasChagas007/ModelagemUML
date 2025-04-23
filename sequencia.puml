@@ -1,0 +1,15 @@
+@startuml Seq-Emprestimo
+actor Aluno
+participant "Tela Emprestimo" as Tela
+participant "Controle Emprestimo" as Ctrl
+database "BD" as DB
+
+Aluno -> Tela : solicitarEmpréstimo(livro)
+Tela -> Ctrl  : validarSolicitação(livro, aluno)
+Ctrl -> DB    : verificarLimiteEmprestimos(aluno)
+DB --> Ctrl   : limiteOk
+Ctrl -> DB    : registrarEmprestimo(aluno, livro)
+DB --> Ctrl   : confirmação
+Ctrl -> Tela  : exibirMensagem("Empréstimo aprovado")
+Tela -> Aluno : mensagem
+@enduml

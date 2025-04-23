@@ -1,0 +1,32 @@
+@startuml Biblioteca-UseCases
+left to right direction
+actor Aluno
+actor Professor
+actor Bibliotecario as BIB
+actor Administrador as ADM
+
+package "Sistema de Biblioteca" {
+  usecase "Buscar Livro" as UC_Busca
+  usecase "Reservar Livro" as UC_Reserva
+  usecase "Renovar Empréstimo" as UC_Renova
+  usecase "Solicitar Empréstimo" as UC_Solicita
+  usecase "Registrar Devolução" as UC_Devolucao
+  usecase "Gerar Relatórios" as UC_Relatorio
+}
+
+Aluno --> UC_Busca
+Aluno --> UC_Reserva
+Aluno --> UC_Renova
+Aluno --> UC_Solicita
+
+Professor --> UC_Busca
+Professor --> UC_Reserva
+Professor --> UC_Renova
+Professor --> UC_Solicita
+
+BIB --> UC_Devolucao
+BIB --> UC_Solicita
+
+ADM --> UC_Relatorio
+ADM --> UC_Devolucao : supervisiona
+@enduml

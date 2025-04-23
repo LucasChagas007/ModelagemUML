@@ -1,0 +1,18 @@
+@startuml Atividade-Renovacao
+start
+:Aluno solicita renovação;
+if (Livro reservado?) then (sim)
+  :Negar renovação;
+  stop
+else (não)
+  :Verificar se já houve renovação;
+  if (Primeira vez?) then (sim)
+    :Atualizar data de devolução\n(+7 dias);
+    :Gravar alteração;
+    :Confirmar ao aluno;
+  else (não)
+    :Negar renovação;
+  endif
+endif
+stop
+@enduml

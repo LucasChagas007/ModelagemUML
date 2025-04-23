@@ -1,0 +1,13 @@
+@startuml Estado-Livro
+[*] --> Disponivel
+
+Disponivel --> Reservado : reserva()
+Disponivel --> Emprestado : emprestar()
+
+Reservado --> Emprestado : retirarReserva()
+Reservado --> Disponivel : cancelarReserva()
+
+Emprestado --> Disponivel : devolver()
+Emprestado --> Reservado : reservarDuranteEmprestimo()
+
+@enduml

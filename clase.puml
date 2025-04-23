@@ -1,0 +1,54 @@
+@startuml Biblioteca-Classes
+class Usuario <<abstract>> {
+  -id: int
+  -nome: string
+  -email: string
+  +autenticar(): boolean
+}
+
+class Aluno {
+  -matricula: string
+}
+class Professor {
+  -siape: string
+}
+class Bibliotecario
+class Administrador
+
+Usuario <|-- Aluno
+Usuario <|-- Professor
+Usuario <|-- Bibliotecario
+Usuario <|-- Administrador
+
+class Livro {
+  -isbn: string
+  -titulo: string
+  -autor: string
+  -categoria: string
+  -estado: EstadoLivro
+}
+
+enum EstadoLivro {
+  DISPONIVEL
+  EMPRESTADO
+  RESERVADO
+}
+
+class Emprestimo {
+  -dataEmprestimo: date
+  -dataPrevista: date
+  -dataDevolucao: date
+  +renovar(): boolean
+}
+
+class Reserva {
+  -dataReserva: date
+  +notificarDisponibilidade()
+}
+
+Usuario "1" -- "0..*" Emprestimo
+Livro   "1" -- "0..*" Emprestimo
+
+Usuario "1" -- "0..*" Reserva
+Livro   "1" -- "0..*" Reserva
+@enduml
